@@ -1,0 +1,155 @@
+.tweets {
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: var(--color-2);
+}
+
+.tweets .column {
+    width: 100%;
+    display: flex;
+    position: relative;
+}
+
+.tweets .column.top {
+    align-items: center;
+}
+
+.tweets .tweet-username {
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    color: var(--black);
+}
+
+.tweets .payload {
+    margin: 5px 0 20px;
+    font-size: 15px;
+    line-height: 18px;
+    padding-right: 25px;
+}
+
+.tweets .tweet-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 2px;
+}
+
+/* buttons */
+.tweets .tweet-buttons {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    z-index: 10;
+}
+
+.tweets .tweet-buttons .kebab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    transition: all 350ms ease; 
+}
+
+.tweets .tweet-buttons .kebab:hover {
+    background-color: var(--color-4);
+}
+
+.tweets .tweet-buttons .kebab svg {
+    width: 18px;
+    height: 18px;
+    color: var(--black);
+    transition: all 350ms ease; 
+}
+
+.tweets .tweet-buttons .kebab svg:hover {
+    color: var(--white);
+}
+
+.tweets .tweet-buttons ul {
+    width: 136px;
+    margin-top:5px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-3);
+    display: none;
+    transition: all 350ms ease; 
+}
+
+.tweets .tweet-buttons ul li {
+    width: 100%;
+}
+
+.tweets .tweet-buttons ul li:first-child {
+    border-bottom: 1px solid #dad4c9;
+}
+
+.tweets .tweet-buttons button {
+    width: 100%;
+    padding: 13px 0 10px 13px;
+    text-align: left;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--black);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    transition: all 350ms ease; 
+}
+
+.tweets .tweet-buttons button:hover {
+    background-color: #e5dfd5;
+}
+
+/* modal */
+.tweets .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(22, 21, 27, 0.3);
+}
+
+.tweets .modal textarea {
+    width: 500px;
+    height: 200px;
+    padding: 15px 17px;
+    font-size: 15px;
+    background-color: var(--color-2);
+    border-radius: 10px;
+}
+
+.tweets .modal .modal-buttons {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.tweets .modal .modal-buttons button {
+    color: var(--white);
+    border: none;
+    background-color: var(--color-4);
+    padding: 5px 15px;
+    font-size: 13px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+}

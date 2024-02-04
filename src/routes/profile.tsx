@@ -2,81 +2,12 @@ import { auth, database, storage } from "@/firebase"
 import { updateProfile } from "firebase/auth";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { collection, getDocs, limit, orderBy, query, where } from "firebase/firestore";
-import { ITweet } from "@/components/timeline";
-import Tweet from "@/components/tweet";
-import Button from "@/components/button";
-
-const Wrapper = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-`;
-const Settings = styled.div`
-    width: 100%;
-    margin: 20px 0;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-`;
-const AvatarUpload = styled.label`
-    width: 120px;
-    height: 120px;
-    overflow: hidden;
-    border-radius: 50%;
-    background-color: var(--color-4);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    svg {
-        width: 70px;
-        color: var(--white);
-    }
-`;
-const AvatarImg = styled.img`
-    width: 100%;
-`;
-const AvatarInput = styled.input`
-    display: none;
-`;
-const MyProfile = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-`;
-const Buttons = styled.div`
-    display: flex;
-    gap: 6px;
-`;
-const Name = styled.span`
-    font-size: 22px;
-    line-height: 22px;
-    font-weight: 600;
-`;
-const EditUsernameTextarea = styled.textarea`
-    width: 240px;
-    height: 22px;
-    background-color: white;
-    overflow-y: hidden;
-    font-size: 22px;
-    line-height: 22px;
-    font-weight: 600;
-    &::placeholder {
-        font-size: 13px;
-        padding-left: 5px;
-    }
-`;
-const Tweets = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 50px;
-`;
+import { ITweet } from "@/components/timeline/timeline";
+import Tweet from "@/components/tweet/tweet";
+import "@/styles/button.css";
+import "@/styles/profile.css";
 
 export default function Profile({}) {
     const user = auth.currentUser;
@@ -164,53 +95,53 @@ export default function Profile({}) {
     }
 
     return (
-        <Wrapper>
-            <Settings>
-                <AvatarUpload htmlFor="avatar">
+        <div className="profile">
+            <div className="profile-settings">
+                <label className="avatar-upload" htmlFor="avatar">
                     {avatar ? (
-                        <AvatarImg src={avatar} />
+                        <img className="avatar-image" src={avatar} />
                     ) : (
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path d="M10 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3.465 14.493a1.23 1.23 0 0 0 .41 1.412A9.957 9.957 0 0 0 10 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 0 0-13.074.003Z" />
                         </svg>
                     )}
-                </AvatarUpload>
-                <AvatarInput onChange={onAvatarChange} id="avatar" type="file" accept="image/*" />
-                <MyProfile>
+                </label>
+                <input className="avatar-input" onChange={onAvatarChange} id="avatar" type="file" accept="image/*" />
+                <div className="my-profile">
                 {editUsername ? (
                     <>
-                    <EditUsernameTextarea
+                    <textarea className="edit-username"
                         value={newUsername}
                         onChange={(e) => setNewUsername(e.target.value)}
                         placeholder="Enter new username"
                     />
-                    <Buttons>
-                        <Button secondary onClick={onSaveUsername}>
+                    <div className="buttons">
+                        <button className="button-secondary" onClick={onSaveUsername}>
                             Save
-                        </Button>
-                        <Button secondary onClick={cancelEditUsername}>
+                        </button>
+                        <button className="button-secondary" onClick={cancelEditUsername}>
                             Cancel
-                        </Button>
-                    </Buttons>
+                        </button>
+                    </div>
                     </>
                 ) : (
                     <>
-                    <Name>{user?.displayName || "Anonymous"}</Name>
-                    <Buttons>
-                        <Button secondary onClick={onEditUsername}>
+                    <span className="username">{user?.displayName || "Anonymous"}</span>
+                    <div className="buttons">
+                        <button className="button-secondary" onClick={onEditUsername}>
                         Edit Username
-                        </Button>
-                        <Button secondary onClick={onLogOut}>
+                        </button>
+                        <button className="button-secondary" onClick={onLogOut}>
                         Sign Out
-                        </Button>
-                    </Buttons>
+                        </button>
+                    </div>
                     </>
                 )}
-                </MyProfile>
-            </Settings>
-            <Tweets>
+                </div>
+            </div>
+            <div className="profile-tweets">
                 {tweets.map(tweet => <Tweet key={tweet.id} {...tweet} />)}
-            </Tweets>
-        </Wrapper>
+            </div>
+        </div>
     )
 }

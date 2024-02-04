@@ -1,9 +1,9 @@
 import { database } from "@/firebase";
 import { collection, limit, onSnapshot, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import styled from "styled-components";
-import Tweet from "./tweet";
+import Tweet from "../tweet/tweet";
 import { Unsubscribe } from "firebase/auth";
+import "./style.css";
 
 export interface ITweet {
     id: string;
@@ -13,19 +13,6 @@ export interface ITweet {
     username: string;
     createdAt: number;
 }
-
-const Wrapper = styled.div`
-    width: 100%;
-    height: 100%;
-    margin-bottom: 50px;
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-    scrollbar-width: none;
-    &::-webkit-scrollbar {
-        display: none;
-    }
-`;
 
 export default function Timeline() {
     const [tweets, setTweet] = useState<ITweet[]>([]);
@@ -67,10 +54,10 @@ export default function Timeline() {
       }, []);
 
     return (
-        <Wrapper>
+        <div className="timeline">
             {tweets.map((tweet => 
                 <Tweet key={tweet.id} {...tweet} />
             ))}
-        </Wrapper>
+        </div>
     )
 }

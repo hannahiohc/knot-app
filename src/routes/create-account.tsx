@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { auth } from '@/firebase';
 import { useNavigate, Link } from "react-router-dom";
 import { FirebaseError } from "@firebase/util";
-import { Error, Form, Input, Switcher, Title, Wrapper, Box } from "@/components/auth-components";
-import Providers from "@/components/providers";
+import "@/styles/auth-compontnets.css"
+import Providers from "@/components/providers/providers";
 
 export default function CreateAccount() {
     const navigate = useNavigate();
@@ -57,18 +57,18 @@ export default function CreateAccount() {
     };
 
     return (
-        <Wrapper>
-            <Box>
-                <Title>Sign Up</Title>
-                <Form onSubmit={onSubmit}>
-                    <Input name="name" onChange={onChange} value={name} placeholder="Name" type="text" required />
-                    <Input name="email" onChange={onChange} value={email} placeholder="Email" type="email" required/>
-                    <Input name="password" onChange={onChange} value={password} placeholder="Password" type="password" required />
-                    <Input type="submit" onChange={onChange} value={isLoading ? "Loading..." : "Create Account"} /> 
-                </Form>
-                {error !== "" ? <Error>{error}</Error> : null}
+        <div className="auth">
+            <div className="auth-container">
+                <h1 className="auth-title">Sign Up</h1>
+                <form className="auth-form" onSubmit={onSubmit}>
+                    <input className="auth-input" name="name" onChange={onChange} value={name} placeholder="Name" type="text" required />
+                    <input className="auth-input" name="email" onChange={onChange} value={email} placeholder="Email" type="email" required/>
+                    <input className="auth-input" name="password" onChange={onChange} value={password} placeholder="Password" type="password" required />
+                    <input className="auth-input" type="submit" onChange={onChange} value={isLoading ? "Loading..." : "Create Account"} /> 
+                </form>
+                {error !== "" ? <span className="auth-result">{error}</span> : null}
                 <Providers />
-                <Switcher>
+                <div className="switcher">
                     <p>Already have an account?
                         <Link to="/login">Sign In 
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.4" stroke="currentColor">
@@ -76,9 +76,9 @@ export default function CreateAccount() {
                             </svg>
                         </Link>
                     </p>
-                </Switcher>
-            </Box>
+                </div>
+            </div>
             <p className="policy">By signing up, you agree to our terms of service and privacy&nbsp;policy.</p>
-        </Wrapper>
+        </div>
     )
 }

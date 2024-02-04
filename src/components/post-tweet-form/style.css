@@ -1,0 +1,50 @@
+.post-tweet-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.post-tweet-form .tweet-form {
+    width: 100%;
+    padding: 15px 15px 15px 17px;
+    border-radius: 10px;
+    background-color: var(--color-2);
+}
+
+.post-tweet-form textarea {
+    width: 100%;
+    font-size: 15px;
+    background-color: var(--color-2);
+    font-family: var(--sans-serif);
+}
+
+.post-tweet-form textarea:focus {
+    border-color: var(--color-4);
+}
+
+.post-tweet-form textarea::placeholder {
+    color: rgb(158, 136, 130);
+}
+
+.post-tweet-form .buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.post-tweet-form .attach-file-button {
+    color: var(--color-4);
+    display: flex;
+    align-items: flex-end;
+    cursor: pointer;
+}
+
+.post-tweet-form .attach-file-button svg {
+    width: 20px;
+}
+
+.post-tweet-form .attach-file-input {
+    display: none;
+}

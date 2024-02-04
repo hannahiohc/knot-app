@@ -1,45 +1,7 @@
 import { auth } from '@/firebase';
 import { GoogleAuthProvider, FacebookAuthProvider, GithubAuthProvider, signInWithPopup } from "@firebase/auth";
 import { useNavigate } from 'react-router';
-import { styled } from "styled-components";
-
-const Wrapper = styled.div`
-    width: 100%;
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    p {
-        margin-right: 5px;
-    }
-`;
-
-const Buttons = styled.div`
-    width: 130px;
-    display: flex;
-    justify-content: space-around;
-
-    button {
-        width: 32px;
-        height: 32px;
-        border: 1px solid var(--lightgrey);
-        border-radius: 50%;
-        background-color: var(--white);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-
-        &:hover {
-            border: 1px solid rgba(170, 71, 58, 0.3);
-        }
-    }
-`;
-
-const Logo = styled.img`
-    height: 18px;
-`;
+import "./style.css";
 
 export default function Providers() {
     const navigate = useNavigate();
@@ -77,19 +39,19 @@ export default function Providers() {
     }
 
     return (
-        <Wrapper>
+        <div className="providers">
             <p>Or sign in with</p>
-            <Buttons>
+            <div className="providers-buttons">
                 <button className="google" onClick={onClickGoogle}> 
-                    <Logo src="/google-logo.svg"/>
+                    <img className="provider-logo" src="/google-logo.svg"/>
                 </button>
                 <button className="facebook" onClick={onClickFacebook}> 
-                    <Logo src="/facebook-logo.svg"/>
+                    <img className="provider-logo" src="/facebook-logo.svg"/>
                 </button>
                 <button className="github" onClick={onClickGithub}> 
-                    <Logo src="/github-logo.svg"/>
+                    <img className="provider-logo" src="/github-logo.svg"/>
                 </button>
-            </Buttons>
-        </Wrapper>
+            </div>
+        </div>
     )
 }

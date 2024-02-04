@@ -1,0 +1,28 @@
+button {
+    transition: all 350ms ease; 
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: all 350ms ease; 
+    display: inline-block;
+    width: fit-content;
+}
+
+button:hover, button:active {
+    opacity: 0.9;
+}
+
+button.button-primary {
+    padding: 5px 15px;
+    background-color: var(--color-4);
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+button.button-secondary {
+    padding: 3px 10px;
+    background-color: var(--color-2);
+    color: var(--brown);
+    font-size: 12px;
+}

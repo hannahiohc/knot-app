@@ -1,62 +1,9 @@
 import { addDoc, collection, updateDoc } from "firebase/firestore";
 import { useState } from "react";
-import { styled } from "styled-components"
 import { auth, database, storage } from "@/firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import Button from "./button";
-
-const Form = styled.form`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 25px;
-`;
-
-const Wrapper = styled.div`
-    width: 100%;
-    padding: 15px 15px 15px 17px;
-    border-radius: 10px;
-    background-color: var(--color-2);
-`;
-
-const TextArea = styled.textarea`
-    width: 100%;
-    font-size: 15px;
-    background-color: var(--color-2);
-    font-family: var(--sans-serif);
-    &:focus {
-        border-color: var(--color-4);
-    }
-    &::placeholder {
-        color: rgb(158, 136, 130);
-    }
-`;
-
-const Buttons = styled.div`
-    display: flex;
-    gap: 10px;
-    justify-content: space-between;
-`;
-
-const AttachFileButton = styled.label`
-    color: var(--color-4);
-    display: flex;
-    align-items: flex-end;
-    cursor: pointer;
-    svg {
-        &.add {
-            width: 20px;
-        }
-        &.added {
-            width: 20px;
-        }
-    }
-`;
-
-const AttachFileInput = styled.input`
-    display: none;
-`;
+import "@/styles/button.css";
+import "./style.css";
 
 export default function PostTweetForm() {
     const [isLoading, setLoading] = useState(false);
@@ -114,11 +61,11 @@ export default function PostTweetForm() {
     };
 
     return (
-        <Form onSubmit={onSubmit}>
-            <Wrapper>
-                <TextArea onChange={onChange} value={tweet} placeholder="What is happening?" rows={5} maxLength={180} required />
-                <Buttons>
-                    <AttachFileButton htmlFor="file">
+        <form className="post-tweet-form" onSubmit={onSubmit}>
+            <div className="tweet-form">
+                <textarea onChange={onChange} value={tweet} placeholder="What is happening?" rows={5} maxLength={180} required />
+                <div className="buttons">
+                    <label className="attach-file-button" htmlFor="file">
                         {file ? (
                             <>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="added" aria-label="Photo Added">
@@ -132,11 +79,11 @@ export default function PostTweetForm() {
                             </svg>
                             </>
                         )}
-                    </AttachFileButton>
-                    <AttachFileInput onChange={onFileChange} type="file" id="file" accept="image/*" />
-                    <Button type="submit" primary buttonValue={isLoading ? "Posting..." : "Post"} />
-                </Buttons>
-            </Wrapper>
-        </Form>
+                    </label>
+                    <input className="attach-file-input" onChange={onFileChange} type="file" id="file" accept="image/*" />
+                    <button className="button-primary" type="submit">{isLoading ? "Posting..." : "Post"}</button>
+                </div>
+            </div>
+        </form>
     );
 }

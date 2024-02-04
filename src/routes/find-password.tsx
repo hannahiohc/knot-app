@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { auth } from "@/firebase";
 import { fetchSignInMethodsForEmail, sendPasswordResetEmail } from "firebase/auth";
 import { Link } from "react-router-dom";
-import { Box, Error, Form, Input, Sucess, Switcher, Title, Wrapper } from "@/components/auth-components";
 import { FirebaseError } from "firebase/app";
+import "@/styles/auth-compontnets.css"
 
 export default function CreateAccount() {
     const [email, setEmail] = useState("");
@@ -36,23 +36,23 @@ export default function CreateAccount() {
     };
 
     return (
-        <Wrapper>
-            <Box>
-                <Title>Reset Your Password</Title>
-                <Form onSubmit={onSubmit}>
-                    <Input name="email" onChange={onChange} value={email} placeholder="Email" type="email" required />
-                    <Input type="submit" value={isLoading ? "Loading..." : "Reset Password"} />
-                </Form>
-                {error !== "" ? <Error>{error}</Error> : null}
-                {success && <Sucess>{success}</Sucess>}
-                <Switcher>
+        <div className="auth">
+            <div className="auth-container">
+                <h1 className="auth-title">Reset Your Password</h1>
+                <form className="auth-form" onSubmit={onSubmit}>
+                    <input className="auth-input" name="email" onChange={onChange} value={email} placeholder="Email" type="email" required />
+                    <input className="auth-input" type="submit" value={isLoading ? "Loading..." : "Reset Password"} />
+                </form>
+                {error !== "" ? <span className="auth-result">{error}</span> : null}
+                {success && <span className="auth-result">{success}</span>}
+                <div className="switcher">
                     <Link to="/login">Back to Sign In
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.4" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                         </svg>
                     </Link>
-                </Switcher>
-            </Box>
-        </Wrapper>
+                </div>
+            </div>
+        </div>
     )
 }

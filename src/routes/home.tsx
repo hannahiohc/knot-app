@@ -1,18 +1,12 @@
-import PostTweetForm from "@components/post-tweet-form";
-import Timeline from "@components/timeline";
-import styled from "styled-components";
-
-const Wrapper = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-`;
+import PostTweetForm from "@components/post-tweet-form/post-tweet-form";
+import Timeline from "@components/timeline/timeline";
+import "@/App.css";
 
 export default function Home() {
     return (
-        <Wrapper>
+        <div className="home">
             <PostTweetForm />
             <Timeline />
-        </Wrapper>
+        </div>
     )
 }
